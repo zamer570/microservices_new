@@ -1,6 +1,7 @@
 package com.padmavati.microservices.resource;
 
 
+import com.padmavati.microservices.enitity.User;
 import com.padmavati.microservices.model.request.UserRequest;
 import com.padmavati.microservices.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/users")
+import java.util.List;
+
+@RestController
+@RequestMapping("/users")
 public class controller {
 
     @Autowired
@@ -21,9 +25,16 @@ public class controller {
     }
 
 
-    @GetMapping("/get-user")
-    public String userData(){
-        return userService.getData();
+    @GetMapping("/get-user/{id}")
+    public User userData(@PathVariable int id){
+        return userService.getData(id);
+    }
+
+    @GetMapping("/get-users")
+    public ResponseEntity<List<User>> userData(){
+        List<User> list =  userService.getAllUsers();
+
+        return ResponseEntity.ok(list);
     }
 
     @PostMapping("/add-user")
