@@ -14,4 +14,8 @@ public class UserRequest{
     private String designation;
 
     private int age;
+
+    private String state;
+
+    private boolean active;
 }

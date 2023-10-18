@@ -39,7 +39,6 @@ public class controller {
     @GetMapping("/get-users")
     public ResponseEntity<List<User>> userData(){
         List<User> list =  userService.getAllUsers();
-
         return ResponseEntity.ok(list);
     }
 
